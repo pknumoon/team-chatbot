@@ -23,13 +23,13 @@ sys.modules['sqlite3']=sys.modules.pop('pysqlite3')
 from langchain_chroma import Chroma
 
 # 🔑 환경 설정
-os.environ["OPENAI_API_KEY"] = "OPENAI_API_KEY"  # 실제 키로 교체
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 embedding = OpenAIEmbeddings(model="text-embedding-3-small")
 
 # ✅ Chroma DB 초기화
 db3 = Chroma(
-    persist_directory="./chroma_db",
+    persist_directory=r"/mount/src/team-chatbot/chroma_db",
     embedding_function=embedding
 )
 
